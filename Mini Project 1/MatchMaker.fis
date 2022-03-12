@@ -1,0 +1,189 @@
+[System]
+Name='MatchMaker'
+Type='mamdani'
+Version=2.0
+NumInputs=20
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='age'
+Range=[0 10]
+NumMFs=3
+MF1='younger':'trapmf',[-4.49 -1.26 1.68 3.55050115651503]
+MF2='middle_aged':'trapmf',[2.48 3.14 6.73 7.99922898997687]
+MF3='old':'trimf',[7.43639167309175 10 13.8]
+
+[Input2]
+Name='education_level'
+Range=[0 10]
+NumMFs=3
+MF1='lower':'trimf',[-4.167 0 3]
+MF2='high_school_diploma':'trimf',[3 5 7]
+MF3='higher':'trimf',[7 10 14.17]
+
+[Input3]
+Name='salary'
+Range=[0 10]
+NumMFs=3
+MF1='low':'trimf',[-4.167 0 4.167]
+MF2='average':'trapmf',[1.25 3 7 8.75]
+MF3='high':'trapmf',[6.25 8.68055555555556 10.4 13.8]
+
+[Input4]
+Name='kindness'
+Range=[0 10]
+NumMFs=4
+MF1='cruel':'trapmf',[-3.75 -1 1.5 2]
+MF2='apathetic':'trimf',[1.5 3 5]
+MF3='normal':'trimf',[4 6 8]
+MF4='compassionate':'trapmf',[7 8.5 10.5 14.5]
+
+[Input5]
+Name='patience'
+Range=[0 1]
+NumMFs=3
+MF1='low':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='average':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='high':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Input6]
+Name='has_plans'
+Range=[0 10]
+NumMFs=4
+MF1='no_plans':'trimf',[-4.167 0 4.167]
+MF2='vaguely':'trapmf',[2 3 5 6]
+MF3='extrem':'trimf',[8 10 14.17]
+MF4='detailed':'trapmf',[5 6 8 9]
+
+[Input7]
+Name='employed'
+Range=[0 10]
+NumMFs=3
+MF1='unemployed':'trimf',[-4.167 0 3]
+MF2='part_time':'trapmf',[3 4 7 8]
+MF3='full_time':'trimf',[5.833 10 14.17]
+
+[Input8]
+Name='relationship_status'
+Range=[0 10]
+NumMFs=3
+MF1='cheating':'trimf',[-4.167 0 3]
+MF2='relationship':'trimf',[3 4.5 6]
+MF3='single':'trimf',[6 10 14.17]
+
+[Input9]
+Name='credit_standing'
+Range=[0 10]
+NumMFs=3
+MF1='low':'trimf',[-4.167 0 4.167]
+MF2='average':'trimf',[0.8333 5 9.167]
+MF3='high':'trimf',[5.833 10 14.17]
+
+[Input10]
+Name='family_relations'
+Range=[0 10]
+NumMFs=3
+MF1='bad':'trimf',[-4.167 0 4.167]
+MF2='good':'trimf',[0.8333 5 9.167]
+MF3='great':'trimf',[5.833 10 14.17]
+
+[Input11]
+Name='problem_solving'
+Range=[0 10]
+NumMFs=3
+MF1='bad':'trimf',[-4.167 0 3]
+MF2='average':'trapmf',[2 3 6 7]
+MF3='good':'trimf',[5.833 10 14.17]
+
+[Input12]
+Name='honest'
+Range=[0 10]
+NumMFs=3
+MF1='liar':'trimf',[-4.167 0 4.167]
+MF2='decent':'trapmf',[1.25 4 6 8.75]
+MF3='saint':'trimf',[5.833 10 14.17]
+
+[Input13]
+Name='communication_skills'
+Range=[0 10]
+NumMFs=3
+MF1='very_bad':'trimf',[-4.167 0 2]
+MF2='average':'trapmf',[1.25 3 7 8.75]
+MF3='great':'trimf',[7 10 12.27]
+
+[Input14]
+Name='wants_children'
+Range=[0 10]
+NumMFs=3
+MF1='no_kids':'trimf',[-4.167 0 1]
+MF2='few_kids':'trimf',[1 5 7]
+MF3='a_lot':'trimf',[5.833 10 14.17]
+
+[Input15]
+Name='poltical_views'
+Range=[0 10]
+NumMFs=3
+MF1='different':'trimf',[-4.167 0 2]
+MF2='share_few':'trapmf',[1 3 6 7]
+MF3='same':'trimf',[5.833 10 14.17]
+
+[Input16]
+Name='religion'
+Range=[0 10]
+NumMFs=3
+MF1='none':'trapmf',[-3.75 -0.4167 2 2]
+MF2='faithful':'trapmf',[1.5 3 6 7.5]
+MF3='extreme':'trapmf',[6 8 10.42 13.75]
+
+[Input17]
+Name='generous'
+Range=[0 10]
+NumMFs=3
+MF1='low':'trimf',[-4.167 0 4.167]
+MF2='average':'trimf',[0.8333 5 9.167]
+MF3='high':'trimf',[5.833 10 14.17]
+
+[Input18]
+Name='hobbies'
+Range=[0 10]
+NumMFs=3
+MF1='none':'trimf',[-4.167 0 2]
+MF2='some':'trapmf',[1.5 2.5 6 7]
+MF3='all':'trapmf',[5.5 8 10.42 13.75]
+
+[Input19]
+Name='attractive'
+Range=[0 10]
+NumMFs=3
+MF1='ugly':'trimf',[-4.167 0 1.5]
+MF2='average':'trapmf',[1 2 7 8]
+MF3='beautiful':'trimf',[5.833 10 14.17]
+
+[Input20]
+Name='criminal_record'
+Range=[0 10]
+NumMFs=3
+MF1='criminal':'trimf',[-4.167 0 1]
+MF2='mild_crime':'trapmf',[1 5 6 7]
+MF3='no_record':'trimf',[6.5 10 14.17]
+
+[Output1]
+Name='match'
+Range=[0 10]
+NumMFs=3
+MF1='no_match':'trimf',[-4.167 0 2]
+MF2='potential_partner':'trimf',[2 4.5 7]
+MF3='match':'trimf',[7 10 14.17]
+
+[Rules]
+1 3 3 4 3 4 3 3 3 3 3 3 3 2 3 2 3 3 3 3, 3 (1) : 1
+3 0 1 1 1 1 1 1 1 1 1 1 1 0 0 3 1 1 1 1, 1 (1) : 2
+0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0, -1 (1) : 2
+2 2 2 3 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2, -2 (1) : 2
+0 0 0 0 0 1 0 3 0 0 0 0 0 1 0 1 0 1 0 0, -2 (1) : 2
