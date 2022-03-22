@@ -2,7 +2,7 @@ from os import popen
 import random
 
 P_MUTATION = 50
-POP_SIZE = 3
+POP_SIZE = 4
 CROSSOVER = 4
 
 def generate_start_pop():
@@ -131,15 +131,24 @@ def write_solutions(solutions):
 
 def main():
 
+    # Ask user how many solutions they would like
+    num_solutions = int(input("How many solutions would you like?:\n"))
+
     solutions = []
 
     # 1. Generate initial population
     population = generate_start_pop()
     # print("Initial population: " + str(population))
 
+    generation_count = 1
+
     # Iterate to desired num of solutions
-    while len(solutions) < 92:
+    while len(solutions) < num_solutions:
     # 2. Calculate the fitness of each chromosome + 3. select parents for mating
+
+        if generation_count % 10000 == 0:
+            print("Generation number " + str(generation_count))
+
         father_info, mother_info = get_parents(population)
 
         # check if either father/mother is a solution and add to solutions if it is
@@ -155,12 +164,13 @@ def main():
         # 4/5/6/7. Create offspring using crossover and mutation
         population = generate_new_population(father_info[0], mother_info[0])
 
-    # print(father_info)
-    # print(mother_info)
-    # print(solutions)
-    # print(population)
+        generation_count += 1
 
-    view_solutions(solutions)
+    print("Total number of generations: " + str(generation_count))
+
+    view_option = input("Would you like to view the solutions on a board? (y/n): ")
+    if view_option.lower() == "y":
+        view_solutions(solutions)
     write_solutions(solutions)
 
 
