@@ -4,7 +4,7 @@ import numpy as np
 
 # training data set in array form
 training_data = np.array([
-    [[0,1,1,1,0],
+    [[0,0.9,1,1,0],
     [1,0,0,0,1],
     [1,0,0,0,1],
     [1,0,0,0,1],
@@ -116,23 +116,12 @@ def view_set(x, y):
         plt.subplot(5,6, i+1)
         plt.axis('off')
         plt.imshow(plot, cmap='binary', vmin=0, vmax=1)
+        plt.title(y[i])
         i+=1
     plt.show()
-    print(y)
+    # print(y)
 
-view_set(training_data, training_vals)
-
-# reshape the training sets
-x = training_data.reshape((len(training_vals), -1))
-y = np.array(training_vals)
-print(x.shape)
-
-x_train = x.T
-y_train = y.reshape(1, y.shape[0])
-
-Y_train_=np.zeros((10,y_train.shape[1]))
-for i in range(y_train.shape[1]):
-    Y_train_[y_train[0,i],i]=1
+# view_set(training_data, training_vals)
 
 # method to generate test set
 # change one from each row of a value
@@ -155,22 +144,14 @@ def generate_test_set():
             test_data.append(copy)
             test_vals.append(i)
     
-    view_set(test_data, test_vals)
+    # view_set(test_data, test_vals)
 
-generate_test_set()
+    test_data = np.array(test_data)
+    # print("Test data shape")
+    # print(test_data.shape)
+    test_data = test_data.reshape(30, -1)
+    x_test = test_data.T
 
-# method to initilize layer parameters
-def init_layer_params(layer_dimens):
-
-    # make a dictionary for the parameters
-    params = {}
-    L = len(layer_dimens)
-    for i in range(1, L):
-        params['W' + str(i)] = np.random.randn(layer_dimens[i], layer_dimens[i-1] * 0.01)
-        params['b' + str(i)] = np.zeros((layer_dimens[i], 1))
-
-        assert(params['W' + str(i)].shape == (layer_dimens[i], layer_dimens[i-1]))
-        assert(params['b' + str(i)].shape == (layer_dimens[i], 1))
-    return params
-
-# 
+    test_vals = np.array(test_vals)
+    
+    return x_test, test_vals

@@ -1,177 +1,7 @@
 import matplotlib.pyplot as plt
 import pylab as pl
 import numpy as np
-
-# training data set in array form
-training_data = np.array([
-    [[0,0.9,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-
-    [[0,0,1,0,0],
-    [0,1,1,0,0],
-    [1,0,1,0,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0]],
-
-    [[0,1,1,1,0],
-    [1,0,0,0,1],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [0,0,0,1,0],
-    [0,0,1,0,0],
-    [0,1,0,0,0],
-    [1,0,0,0,0],
-    [1,1,1,1,1]],
-    
-    [[0,1,1,1,0],
-    [1,0,0,0,1],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [0,0,0,1,0],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-    
-    [[0,0,0,1,0],
-    [0,0,1,1,0],
-    [0,0,1,1,0],
-    [0,1,0,1,0],
-    [0,1,0,1,0],
-    [1,0,0,1,0],
-    [1,1,1,1,1],
-    [0,0,0,1,0],
-    [0,0,0,1,0]],
-    
-    [[1,1,1,1,1],
-    [1,0,0,0,0],
-    [1,0,0,0,0],
-    [1,1,1,1,0],
-    [1,0,0,0,1],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-    
-    [[0,1,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,0],
-    [1,0,0,0,0],
-    [1,1,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-    
-    [[1,1,1,1,1],
-    [0,0,0,0,1],
-    [0,0,0,1,0],
-    [0,0,0,1,0],
-    [0,0,1,0,0],
-    [0,0,1,0,0],
-    [0,1,0,0,0],
-    [0,1,0,0,0],
-    [0,1,0,0,0]],
-    
-    [[0,1,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-
-    [[0,1,1,1,0],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,1],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,0]],
-])
-
-# Values of the training set
-training_vals = [i for i in range(10)]
-
-# View the set
-def view_set(x, y):
-    plt.figure(figsize=(10,len(x)))
-    i=0
-    for plot in x:
-        plt.subplot(5,6, i+1)
-        plt.axis('off')
-        plt.imshow(plot, cmap='binary', vmin=0, vmax=1)
-        plt.title(y[i])
-        i+=1
-    plt.show()
-    # print(y)
-
-view_set(training_data, training_vals)
-
-# reshape the training sets
-x = training_data.reshape((len(training_vals), -1))
-y = np.array(training_vals)
-# print(x)
-
-x_train = x.T
-y_train = y.reshape(1, y.shape[0])
-
-Y_train_=np.zeros((10,y_train.shape[1]))
-for i in range(y_train.shape[1]):
-    Y_train_[y_train[0,i],i]=1
-# print(Y_train_)
-
-# method to generate test set
-# change one from each row of a value
-def generate_test_set():
-
-    # train_copy = np.copy(training_data)
-    test_data = []
-    test_vals = []
-    for i in range(len(training_data)):
-        for j in range(3):
-            copy = np.copy(training_data[i])
-            for row in copy:
-                col = np.random.randint(0, 5)
-                if row[col] == 1:
-                    row[col] = 0
-                else:
-                    switch = np.random.randint(0,5)
-                    if switch == 1:
-                        row[col] = 1
-            test_data.append(copy)
-            test_vals.append(i)
-    
-    view_set(test_data, test_vals)
-
-    test_data = np.array(test_data)
-    print("Test data shape")
-    # print(test_data.shape)
-    test_data = test_data.reshape(30, -1)
-    x_test = test_data.T
-
-    test_vals = np.array(test_vals)
-    test_y = test_vals.reshape(1, test_vals.shape[0])
-    y_test=np.zeros((10,test_y.shape[1]))
-    for i in range(test_y.shape[1]):
-        y_test[test_y[0,i],i]=1
-    
-    return x_test, y_test
+from number_gen import training_data, training_vals, view_set, generate_test_set
 
 # method to initilize layer parameters
 def init_layer_params(layer_dimens):
@@ -318,9 +148,6 @@ def update_params(params, grads, learning_rate):
         params["b" + str(l+1)] = params["b" + str(l+1)]-(learning_rate)*grads["db"+str(l+1)]
     return params
 
-# N layer neural network
-layers_dims=[x_train.shape[0],400,10]
-
 def run_model(X, Y, layers_dims, learning_rate = 0.1, num_iterations = 3000):
     # np.random.seed(2)
     sses = [] 
@@ -333,10 +160,10 @@ def run_model(X, Y, layers_dims, learning_rate = 0.1, num_iterations = 3000):
         grads = layers_model_backward(AL, Y, caches)
         params = update_params(params, grads, learning_rate)
         sses.append(sse)
-    # plot the cost
-    print(sse)
-    print(AL)
-    print(Y)
+    # plot the sse
+    # print(sse)
+    # print(AL)
+    # print(Y)
     plt.plot(np.squeeze(sses))
     plt.ylabel('SSE')
     plt.xlabel('Epoch')
@@ -346,29 +173,52 @@ def run_model(X, Y, layers_dims, learning_rate = 0.1, num_iterations = 3000):
     
     return params
 
-params = run_model(x_train, Y_train_, layers_dims, num_iterations = 10000)
-# print(params)
-
 # Predictions given inputs
 def predict(X,params):
     AL,caches=layers_model_forward(X,params)
     prediction=np.argmax(AL,axis=0)
     return prediction.reshape(1,prediction.shape[0])
 
-train_predictions = predict(x_train, params)
-print(train_predictions)
+def main():
+        
+    # reshape the training sets
+    x = training_data.reshape((len(training_vals), -1))
+    y = np.array(training_vals)
+    # print(x)
 
-print("Training Accuracy : "+ str(np.sum(train_predictions==y_train)/y_train.shape[1] * 100)+" %")
+    x_train = x.T
+    y = y.reshape(y.shape[0], 1)
+    y_train = y.T
 
-x_test, y_test = generate_test_set()
+    Y_train_=np.zeros((10,y_train.shape[1]))
+    for i in range(y_train.shape[1]):
+        Y_train_[y_train[0,i],i]=1
+    # print(Y_train_)
 
-test_predictions = predict(x_test, params)
-print(test_predictions[0])
-print(y_test)
+    # N layer neural network
+    layers_dims=[x_train.shape[0],10,10]
 
-print("Testing Accuracy : "+ str(np.sum(test_predictions==y_test)/y_test.shape[1] * 100)+" %")
+    params = run_model(x_train, Y_train_, layers_dims, num_iterations = 10000)
+    # print(params)
 
-test_x = x_test.T
-test_view = test_x.reshape((30, 9 , 5))
+    train_predictions = predict(x_train, params)
+    print(y_train)
 
-view_set(test_view, test_predictions[0])
+    print("Training Accuracy : "+ str(np.sum(train_predictions[0]==y_train[0])/y_train.shape[1] * 100)+" %")
+
+    x_test, y_test = generate_test_set()
+
+    test_predictions = predict(x_test, params)
+    print(test_predictions[0])
+    print(y_test)
+
+    print("Testing Accuracy : "+ str(np.sum(test_predictions==y_test)/y_test.shape[0] * 100)+" %")
+
+    test_x = x_test.T
+    test_view = test_x.reshape((30, 9 , 5))
+
+    view_set(test_view, test_predictions[0])
+
+if __name__ == '__main__':
+    main()
+    
