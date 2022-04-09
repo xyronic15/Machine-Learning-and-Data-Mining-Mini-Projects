@@ -127,7 +127,6 @@ def view_set(x, y):
 # change one from each row of a value
 def generate_test_set():
 
-    # train_copy = np.copy(training_data)
     test_data = []
     test_vals = []
     for i in range(len(training_data)):
@@ -147,8 +146,6 @@ def generate_test_set():
     # view_set(test_data, test_vals)
 
     test_data = np.array(test_data)
-    # print("Test data shape")
-    # print(test_data.shape)
     test_data = test_data.reshape(30, -1)
     x_test = test_data.T
 

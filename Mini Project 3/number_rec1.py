@@ -168,7 +168,7 @@ def run_model(X, Y, layers_dims, learning_rate = 0.1, num_iterations = 3000):
     plt.ylabel('SSE')
     plt.xlabel('Epoch')
     plt.title("Learning rate =" + str(learning_rate))
-    # plt.show()
+    plt.show()
 
     
     return params
@@ -180,6 +180,8 @@ def predict(X,params):
     return prediction.reshape(1,prediction.shape[0])
 
 def main():
+
+    view_set(training_data, training_vals)
         
     # reshape the training sets
     x = training_data.reshape((len(training_vals), -1))
@@ -198,7 +200,7 @@ def main():
     # N layer neural network
     layers_dims=[x_train.shape[0],10,10]
 
-    params = run_model(x_train, Y_train_, layers_dims, num_iterations = 10000)
+    params = run_model(x_train, Y_train_, layers_dims, num_iterations = 500)
     # print(params)
 
     train_predictions = predict(x_train, params)
